@@ -622,6 +622,7 @@ extension String{
 }
 
 @available(iOS 8.2, *)
+
 //  MARK: - LKNSearchBar
 public class LKNSearchBar: UISearchBar {
     
