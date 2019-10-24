@@ -35,7 +35,7 @@ extension UIColor{
         return self.adjust(by: abs(percentage) )
     }
     /** Return UIColor darker */
-    func darker(by percentage: CGFloat = 50.0) -> UIColor? {
+    public func darker(by percentage: CGFloat = 50.0) -> UIColor? {
         return self.adjust(by: -1 * abs(percentage) )
     }
     
@@ -55,10 +55,10 @@ extension UIColor{
 //  MARK: - Numeric Collection
 extension Collection where Element: Numeric {
     /** Get the sum of an array */
-    func sum() -> Element { return reduce(0, +) }
+    public func sum() -> Element { return reduce(0, +) }
     
     /** Change an integer array to a double array */
-    func intToDouble() -> [Double] {
+    public func intToDouble() -> [Double] {
         var array = [Double]()
         for i in self{
             array.append(Double((i as? Int)!))
@@ -67,7 +67,7 @@ extension Collection where Element: Numeric {
     }
     
     /** Change an integer array to percent array */
-    func percent() -> [Int]{
+    public func percent() -> [Int]{
         var array = [Int]()
         for i in self{
             array.append(lround((Double((i as! Int)*100) / Double(self.sum() as! Int))))
@@ -79,7 +79,7 @@ extension Collection where Element: Numeric {
 //  MARK: - NSLayoutConstraint Collection
 extension Collection where Element: NSLayoutConstraint{
     /** Get the specific constraint by providing it's identifier */
-    func constraint(withIdentifier: String) -> NSLayoutConstraint {
+    public func constraint(withIdentifier: String) -> NSLayoutConstraint {
         
         return self.filter { $0.identifier == withIdentifier }.first ?? NSLayoutConstraint.init()
     }
@@ -87,7 +87,7 @@ extension Collection where Element: NSLayoutConstraint{
 
 extension UIImageView{
     /** Move the UIImageView horizontally infinity */
-    func imageViewTranslationX(value: CGFloat){
+    public func imageViewTranslationX(value: CGFloat){
         let animation = CABasicAnimation(keyPath: "transform.translation.x")
         animation.toValue = value
         animation.duration = 2
@@ -314,7 +314,7 @@ extension UIImage {
 //  MARK: - UIViewController
 extension UIViewController{
     /** Custom UIAlertController */
-    func customAlert(title: String, message: String, preferredStyle: UIAlertController.Style, titleFont: String, titleFontSize: CGFloat = 18, titleColor: UIColor, messageFont: String, messageFontSize: CGFloat = 14, messageColor: UIColor) -> UIAlertController{
+    public func customAlert(title: String, message: String, preferredStyle: UIAlertController.Style, titleFont: String, titleFontSize: CGFloat = 18, titleColor: UIColor, messageFont: String, messageFontSize: CGFloat = 14, messageColor: UIColor) -> UIAlertController{
         let controller = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         func customAlertMessage(setValueKey: String, message: String, controller: UIAlertController, fontType: String,color: UIColor, fontSize: CGFloat){
             let presentString = message
@@ -328,7 +328,7 @@ extension UIViewController{
         return controller
     }
     
-    func popMessage(text: String){
+    public func popMessage(text: String){
         let messageLabel = UILabel()
         messageLabel.frame = CGRect(origin: view.frame.origin, size: CGSize(width: view.frame.width * 0.8, height: 80))
         messageLabel.layer.cornerRadius = 8
@@ -356,7 +356,7 @@ extension UIViewController{
         }
     }
     
-    var isDarkModeEnabled : Bool {
+    public var isDarkModeEnabled : Bool {
         get {
             if #available(iOS 12.0, *) {
                 return traitCollection.userInterfaceStyle == .dark
@@ -369,7 +369,7 @@ extension UIViewController{
 
 //  MARK: - UIAlertController
 extension UIAlertController{
-    convenience init(title: String, message: String, preferredStyle: UIAlertController.Style, titleFont: String, titleFontSize: CGFloat = 18, titleColor: UIColor, messageFont: String, messageFontSize: CGFloat = 15, messageColor: UIColor){
+    public convenience init(title: String, message: String, preferredStyle: UIAlertController.Style, titleFont: String, titleFontSize: CGFloat = 18, titleColor: UIColor, messageFont: String, messageFontSize: CGFloat = 15, messageColor: UIColor){
         self.init(title: title, message: message, preferredStyle: preferredStyle)
         func customAlertMessage(setValueKey: String, message: String, controller: UIAlertController, fontType: String,color: UIColor, fontSize: CGFloat){
             let presentString = message
@@ -387,7 +387,7 @@ extension UIAlertController{
 //  MARK: - UIButton
 extension UIButton{
     /** UIButton's animation */
-    func buttonAnimation(animationType: animationType, duration: CGFloat = 0.05, infinity: Bool = false){
+    public func buttonAnimation(animationType: animationType, duration: CGFloat = 0.05, infinity: Bool = false){
         switch animationType{
         case .shrink:
             let animation = CABasicAnimation(keyPath: "transform.scale")
@@ -436,7 +436,7 @@ extension UIButton{
         }
     }
     /** UIButton's rotation */
-    func buttonRotate(semicircleAsUnit: CGFloat, duration: Double){
+    public func buttonRotate(semicircleAsUnit: CGFloat, duration: Double){
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = 0
         animation.toValue = CGFloat.pi * semicircleAsUnit
@@ -456,7 +456,7 @@ extension UIView{
         case segmentUp
     }
     
-    func viewAnimation(animationType: animationType){
+    public func viewAnimation(animationType: animationType){
         switch animationType{
         case .shrink:
             let animation = CABasicAnimation(keyPath: "transform.scale")
@@ -493,7 +493,7 @@ extension UIView{
         }
     }
 
-    func viewShrink(){
+    public func viewShrink(){
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.fromValue = 1
         animation.autoreverses = true
@@ -502,7 +502,7 @@ extension UIView{
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         layer.add(animation, forKey: nil)
     }
-    func decrease(){
+    public func decrease(){
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.fromValue = 1
         animation.toValue = 0.95
@@ -510,7 +510,7 @@ extension UIView{
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         layer.add(animation, forKey: nil)
     }
-    func viewRotate(semicircleAsUnit: CGFloat, duration: Double){
+    public func viewRotate(semicircleAsUnit: CGFloat, duration: Double){
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = 0
         animation.toValue = CGFloat.pi * semicircleAsUnit // semicircleAsUnit = 2 A circle
@@ -519,7 +519,7 @@ extension UIView{
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         layer.add(animation, forKey: nil)
     }
-    func viewTranslationX(value: CGFloat,duration: Double){
+    public func viewTranslationX(value: CGFloat,duration: Double){
         let animation = CABasicAnimation(keyPath: "transform.translation.x")
         animation.toValue = value
         animation.duration = duration
@@ -529,7 +529,7 @@ extension UIView{
         layer.add(animation, forKey: nil)
     }
     /** Perform a horizontal shift and a squezze effect */
-    func viewSqueezeX(xValue: CGFloat,duration: Double){
+    public func viewSqueezeX(xValue: CGFloat,duration: Double){
         let animation = CABasicAnimation(keyPath: "transform.translation.x")
         animation.toValue = xValue
         animation.duration = duration
@@ -555,7 +555,7 @@ extension UIView{
         layer.add(animation2, forKey: nil)
     }
     /** Perform a vertical shift and asqueeze effect */
-    func viewSqueezeY(yValue: CGFloat,duration: Double){
+    public func viewSqueezeY(yValue: CGFloat,duration: Double){
         let animation = CABasicAnimation(keyPath: "transform.translation.y")
         animation.toValue = yValue
         animation.duration = duration
@@ -580,16 +580,6 @@ extension UIView{
         animation2.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         layer.add(animation2, forKey: nil)
     }
-    
-    var isDarkModeEnabled : Bool {
-        get {
-            if #available(iOS 12.0, *) {
-                return traitCollection.userInterfaceStyle == .dark
-            } else {
-                return false
-            }
-        }
-    }
 }
 
 //  MARK: - Bundle
@@ -609,7 +599,7 @@ extension Bundle{
 //  MARK: - String
 extension String{
     /** Drop the number of character off the string */
-    func dropChracter(numberDrop: Int) -> String{
+    public func dropChracter(numberDrop: Int) -> String{
         if numberDrop < 0{
             let b = self.index(self.endIndex, offsetBy: numberDrop)
             return String(self[..<b])
