@@ -3,7 +3,7 @@
 //  Swift Package
 //
 //  Created by Arnold Lee on 2019/10/24.
-//  Copyright © 2018 Arnold Lee. All rights reserved.
+//  Copyright © 2019 Arnold Lee. All rights reserved.
 //
 
 import Foundation
@@ -620,66 +620,3 @@ extension String{
         }
     }
 }
-
-@available(iOS 8.2, *)
-
-//  MARK: - LKNSearchBar
-public class LKNSearchBar: UISearchBar {
-    
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    var font = UIFont.systemFont(ofSize: 20, weight: .regular) {
-        didSet {
-            draw(self.frame)
-        }
-    }
-    var lineColor = UIColor(hexString: "#01B7B7") {
-        didSet {
-            draw(self.frame)
-        }
-    }
-    var barBackgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1) {
-        didSet {
-            draw(self.frame)
-        }
-    }
-    
-    override public func draw(_ rect: CGRect) {
-        
-        var customTextField: UITextField
-        
-        if let textField = subviews[0].subviews[1] as? UITextField{
-            customTextField = textField
-        }
-        else{
-            customTextField = subviews[0].subviews[1].subviews[0] as! UITextField
-        }
-        
-        customTextField.borderStyle = .none
-        
-        //textField.textColor = UIColor(displayP3Red: 1/255, green: 170/255, blue: 170/255, alpha: 1)
-        
-        customTextField.font = font
-        
-        subviews[0].subviews[1].frame = CGRect(origin: frame.origin, size: CGSize(width: frame.width, height: frame.height))
-        
-        subviews[0].subviews[1].backgroundColor = barBackgroundColor
-        
-        let line = UIView()
-        
-        line.frame = CGRect(x: 0, y: customTextField.frame.height - 4, width: customTextField.frame.width, height: 4)
-        
-        line.backgroundColor = lineColor
-        
-        customTextField.addSubview(line)
-        
-        showsCancelButton = false
-        
-        searchBarStyle = .prominent
-        
-        isTranslucent = false
-        
-        // Drawing code
-    }
-}
-
