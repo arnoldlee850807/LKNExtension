@@ -384,6 +384,13 @@ extension UIAlertController{
     }
 }
 
+public enum animationType{
+    case shrink
+    case enlarge
+    case segmentDown
+    case segmentUp
+}
+
 //  MARK: - UIButton
 extension UIButton{
     /** UIButton's animation */
@@ -448,14 +455,6 @@ extension UIButton{
 
 //  MARK: - UIView
 extension UIView{
-    
-    enum animationType{
-        case shrink
-        case enlarge
-        case segmentDown
-        case segmentUp
-    }
-    
     public func viewAnimation(animationType: animationType){
         switch animationType{
         case .shrink:
