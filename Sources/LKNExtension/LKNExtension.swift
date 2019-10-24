@@ -13,7 +13,7 @@ import ImageIO
 //  MARK: - UIColor
 extension UIColor{
     /** An easy way to get the color by providing the hexstring */
-    convenience init(hexString: String) {
+    public convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
         Scanner(string: hex).scanHexInt32(&int)
@@ -31,7 +31,7 @@ extension UIColor{
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
     /** Return UIColor lighter */
-    func lighter(by percentage: CGFloat = 50.0) -> UIColor? {
+    public func lighter(by percentage: CGFloat = 50.0) -> UIColor? {
         return self.adjust(by: abs(percentage) )
     }
     /** Return UIColor darker */
@@ -39,7 +39,7 @@ extension UIColor{
         return self.adjust(by: -1 * abs(percentage) )
     }
     
-    func adjust(by percentage: CGFloat = 50.0) -> UIColor? {
+    public func adjust(by percentage: CGFloat = 50.0) -> UIColor? {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
             return UIColor(red: min(red + percentage/100, 1.0),
