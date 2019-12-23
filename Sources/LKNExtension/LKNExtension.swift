@@ -365,6 +365,53 @@ extension UIViewController{
             }
         }
     }
+    
+    fileprivate var customActivityIndicatorBaseView: UIView {
+        let view = UIView()
+        view.frame = self.view.frame
+        return view
+    }
+    
+    @available(iOS 10.0, *)
+    public func customActivityIndicator(withView: UIView, textBelowYourView: String = "", textColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 13), textLocation: CGFloat = 20, backgroundColor: UIColor = .gray) {
+        customActivityIndicatorBaseView.backgroundColor = backgroundColor.withAlphaComponent(0.5)
+        customActivityIndicatorBaseView.addSubview(withView)
+        withView.center = customActivityIndicatorBaseView.center
+        if textBelowYourView != "" {
+            let label = UILabel()
+            label.textColor = textColor
+            label.text = textBelowYourView
+            label.font = font
+            label.numberOfLines = 0
+            label.textAlignment = .center
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { (timer) in
+                if label.text == textBelowYourView {
+                    label.text = textBelowYourView + " ."
+                }
+                else if label.text == textBelowYourView + " ." {
+                    label.text = textBelowYourView + " .."
+                }
+                else if label.text == textBelowYourView + " .." {
+                    label.text = textBelowYourView + " ..."
+                }
+                else {
+                    label.text = textBelowYourView
+                }
+            }
+            customActivityIndicatorBaseView.addSubview(label)
+            label.frame = customActivityIndicatorBaseView.frame
+            label.frame.inset(by: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0))
+        }
+        self.view.addSubview(customActivityIndicatorBaseView)
+    }
+    
+    public func removeCustomActivityIndicator() {
+        guard self.view.subviews.contains(customActivityIndicatorBaseView) else {
+            print("CustomActivityIndicator don't exist")
+            return
+        }
+        customActivityIndicatorBaseView.removeFromSuperview()
+    }
 }
 
 //  MARK: - UIAlertController
