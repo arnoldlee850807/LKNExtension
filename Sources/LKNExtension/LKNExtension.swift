@@ -376,8 +376,10 @@ extension UIViewController{
         customActivityIndicatorBaseView.backgroundColor = backgroundColor.withAlphaComponent(0.5)
         let withViewBaseGrayView = UIView()
         customActivityIndicatorBaseView.addSubview(withViewBaseGrayView)
-        withViewBaseGrayView.center = customActivityIndicatorBaseView.center
         withViewBaseGrayView.frame.size = withViewBaseSize
+        withViewBaseGrayView.center = customActivityIndicatorBaseView.center
+        withViewBaseGrayView.clipsToBounds = true
+        withViewBaseGrayView.layer.cornerRadius = 8
         withViewBaseGrayView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
         
         customActivityIndicatorBaseView.addSubview(withView)
