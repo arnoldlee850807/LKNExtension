@@ -366,15 +366,23 @@ extension UIViewController{
         }
     }
     
-    fileprivate var customActivityIndicatorBaseView: UIView {
-        let view = UIView()
-        view.frame = self.view.frame
-        return view
-    }
     
+    
+    fileprivate var customActivityIndicatorBaseView: UIView {
+        return UIView()
+    }
+
     @available(iOS 10.0, *)
-    public func customActivityIndicator(withView: UIView, textBelowYourView: String = "", textColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 13), textLocation: CGFloat = 20, backgroundColor: UIColor = .gray) {
+    public func customActivityIndicator(withView: UIView, withViewBaseSize: CGSize = .zero, textBelowYourView: String = "", textColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 13), textLocation: CGFloat = 50, backgroundColor: UIColor = .gray) {
+        
+        customActivityIndicatorBaseView.frame = view.frame
         customActivityIndicatorBaseView.backgroundColor = backgroundColor.withAlphaComponent(0.5)
+        let withViewBaseGrayView = UIView()
+        customActivityIndicatorBaseView.addSubview(withViewBaseGrayView)
+        withViewBaseGrayView.center = customActivityIndicatorBaseView.center
+        withViewBaseGrayView.frame.size = withViewBaseSize
+        withViewBaseGrayView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        
         customActivityIndicatorBaseView.addSubview(withView)
         withView.center = customActivityIndicatorBaseView.center
         if textBelowYourView != "" {
@@ -400,14 +408,15 @@ extension UIViewController{
             }
             customActivityIndicatorBaseView.addSubview(label)
             label.frame = customActivityIndicatorBaseView.frame
-            label.frame.inset(by: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0))
+            label.frame = CGRect(x: label.frame.minX, y: label.frame.minY + textLocation, width: label.frame.width, height: label.frame.height)
         }
-        self.view.addSubview(customActivityIndicatorBaseView)
+        view.addSubview(customActivityIndicatorBaseView)
+        print("LKNExtension: customActivityIndicator: addsubview")
     }
     
     public func removeCustomActivityIndicator() {
         guard self.view.subviews.contains(customActivityIndicatorBaseView) else {
-            print("CustomActivityIndicator don't exist")
+            print("LKNExtension: removeCustomActivityIndicator: CustomActivityIndicator don't exist")
             return
         }
         customActivityIndicatorBaseView.removeFromSuperview()
