@@ -311,6 +311,8 @@ extension UIImage {
     
 }
 
+fileprivate var customActivityIndicatorBaseView = UIView()
+
 //  MARK: - UIViewController
 extension UIViewController{
     /** Custom UIAlertController */
@@ -366,11 +368,6 @@ extension UIViewController{
         }
     }
     
-    
-    
-    fileprivate var customActivityIndicatorBaseView: UIView {
-        return UIView()
-    }
 
     @available(iOS 10.0, *)
     public func customActivityIndicator(withView: UIView, withViewBaseSize: CGSize = .zero, textBelowYourView: String = "", textColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 13), textLocation: CGFloat = 50, backgroundColor: UIColor = .gray) {
