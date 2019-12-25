@@ -419,6 +419,7 @@ extension UIViewController{
             return
         }
         customActivityIndicatorBaseView.removeFromSuperview()
+        customActivityIndicatorBaseView.subviews.removeAll()
     }
 }
 
