@@ -371,7 +371,7 @@ extension UIViewController{
 
     @available(iOS 10.0, *)
     public func customActivityIndicator(withView: UIView, withViewBaseSize: CGSize = .zero, textBelowYourView: String = "", textColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 13), textLocation: CGFloat = 50, backgroundColor: UIColor = .gray) {
-        
+        customActivityIndicatorBaseView = UIView()
         customActivityIndicatorBaseView.frame = view.frame
         customActivityIndicatorBaseView.backgroundColor = backgroundColor.withAlphaComponent(0.5)
         let withViewBaseGrayView = UIView()
@@ -419,7 +419,6 @@ extension UIViewController{
             return
         }
         customActivityIndicatorBaseView.removeFromSuperview()
-        customActivityIndicatorBaseView.subviews.removeAll()
     }
 }
 
