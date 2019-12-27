@@ -316,7 +316,7 @@ fileprivate var customActivityIndicatorBaseView = UIView()
 //  MARK: - UIViewController
 extension UIViewController{
     /** Custom UIAlertController */
-    public func customAlert(title: String, message: String, titleFont: String, titleFontSize: CGFloat = 18, titleColor: UIColor, messageFont: String, messageFontSize: CGFloat = 14, messageColor: UIColor) -> UIAlertController{
+    public func customAlert(title: String, message: String, titleFont: String, titleFontSize: CGFloat = 18, titleColor: UIColor, messageFont: String, messageFontSize: CGFloat = 14, messageColor: UIColor, actionButtonText: String) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         func customAlertMessage(setValueKey: String, message: String, controller: UIAlertController, fontType: String,color: UIColor, fontSize: CGFloat){
             let presentString = message
@@ -327,7 +327,10 @@ extension UIViewController{
         }
         customAlertMessage(setValueKey: "attributedTitle", message: title, controller: controller, fontType: titleFont, color: titleColor, fontSize: titleFontSize)
         customAlertMessage(setValueKey: "attributedMessage", message: message, controller: controller, fontType: messageFont, color: messageColor, fontSize: messageFontSize)
-        return controller
+        let action = UIAlertAction(title: actionButtonText, style: .cancel, handler: nil)
+        controller.addAction(action)
+        
+        self.present(controller, animated: true, completion: nil)
     }
     
     public func popMessage(text: String){
