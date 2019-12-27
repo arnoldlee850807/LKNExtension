@@ -316,8 +316,8 @@ fileprivate var customActivityIndicatorBaseView = UIView()
 //  MARK: - UIViewController
 extension UIViewController{
     /** Custom UIAlertController */
-    public func customAlert(title: String, message: String, preferredStyle: UIAlertController.Style, titleFont: String, titleFontSize: CGFloat = 18, titleColor: UIColor, messageFont: String, messageFontSize: CGFloat = 14, messageColor: UIColor) -> UIAlertController{
-        let controller = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+    public func customAlert(title: String, message: String, titleFont: String, titleFontSize: CGFloat = 18, titleColor: UIColor, messageFont: String, messageFontSize: CGFloat = 14, messageColor: UIColor) -> UIAlertController{
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         func customAlertMessage(setValueKey: String, message: String, controller: UIAlertController, fontType: String,color: UIColor, fontSize: CGFloat){
             let presentString = message
             var messageMutableString = NSMutableAttributedString()
