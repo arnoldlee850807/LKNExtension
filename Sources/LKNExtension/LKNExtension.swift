@@ -549,7 +549,6 @@ extension UIView{
             layer.add(animation, forKey: nil)
         }
     }
-
     public func viewShrink(){
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.fromValue = 1
@@ -636,6 +635,16 @@ extension UIView{
         animation2.repeatCount = .infinity
         animation2.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         layer.add(animation2, forKey: nil)
+    }
+    @available(iOS 10.0, *)
+    public func setBlurView(style: UIBlurEffect.Style) {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.clipsToBounds = true
+        blurEffectView.frame = self.frame
+        addSubview(blurEffectView)
+        sendSubviewToBack(blurEffectView)
     }
 }
 
