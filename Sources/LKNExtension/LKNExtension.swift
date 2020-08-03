@@ -50,6 +50,17 @@ extension UIColor{
             return nil
         }
     }
+    
+    /** Return contrast UIColor */
+    public func contrast() -> UIColor? {
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+            return UIColor(red: 1 - red, green: 1 - green, blue: 1 - blue, alpha: alpha)
+        }
+        else {
+            return nil
+        }
+    }
 }
 
 //  MARK: - Numeric Collection
@@ -637,14 +648,13 @@ extension UIView{
         layer.add(animation2, forKey: nil)
     }
     @available(iOS 10.0, *)
-    public func setBlurView(style: UIBlurEffect.Style) {
+    public func setBlurBackground(style: UIBlurEffect.Style) {
         let blurEffect = UIBlurEffect(style: style)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blurEffectView.clipsToBounds = true
         blurEffectView.frame = self.frame
-        addSubview(blurEffectView)
-        sendSubviewToBack(blurEffectView)
+        self.superview?.insertSubview(blurEffectView, belowSubview: self)
     }
 }
 
