@@ -453,6 +453,16 @@ extension UIAlertController{
     }
 }
 
+extension UIAlertAction {
+    public var titleTextColor: UIColor? {
+        get {
+            return self.value(forKey: "titleTextColor") as? UIColor
+        } set {
+            self.setValue(newValue, forKey: "titleTextColor")
+        }
+    }
+}
+
 public enum animationType{
     case shrink
     case enlarge
