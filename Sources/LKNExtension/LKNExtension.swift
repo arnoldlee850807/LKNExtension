@@ -658,6 +658,7 @@ extension UIView{
         layer.add(animation2, forKey: nil)
     }
     @available(iOS 10.0, *)
+    /** Set a blur background */
     public func setBlurBackground(style: UIBlurEffect.Style) {
         let blurEffect = UIBlurEffect(style: style)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -665,6 +666,18 @@ extension UIView{
         blurEffectView.clipsToBounds = true
         blurEffectView.frame = self.frame
         self.superview?.insertSubview(blurEffectView, belowSubview: self)
+    }
+    /** Add shadow to UIView when corner radius is set */
+    public func addRoundShadowView(withShadowColor: UIColor = .black, offSet: CGSize, opacity: Float, radius: CGFloat = 3) {
+        let shadowLayer = CAShapeLayer()
+        shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
+        shadowLayer.fillColor = backgroundColor?.cgColor
+        shadowLayer.shadowColor = withShadowColor.cgColor
+        shadowLayer.shadowPath = shadowLayer.path
+        shadowLayer.shadowOffset = offSet
+        shadowLayer.shadowOpacity = opacity
+        shadowLayer.shadowRadius = radius
+        layer.insertSublayer(shadowLayer, at: 0)
     }
 }
 
