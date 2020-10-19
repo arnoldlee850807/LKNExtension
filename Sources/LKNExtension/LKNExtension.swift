@@ -787,3 +787,17 @@ extension UIDevice {
         return mapToDevice(identifier: identifier)
     }()
 }
+
+public protocol Declarative: AnyObject {
+    init()
+}
+
+public extension Declarative {
+    
+    init(configureHandler: (Self) -> Void) {
+        self.init()
+        configureHandler(self)
+    }
+}
+
+extension NSObject: Declarative { }
