@@ -800,3 +800,7 @@ public extension Declarative {
 }
 
 extension NSObject: Declarative { }
+
+public func debugFunctionPrint(functionName: String, errorStatement: String) {
+    print("Error function: \(functionName):  \(errorStatement)")
+}
