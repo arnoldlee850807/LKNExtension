@@ -788,11 +788,11 @@ extension UIDevice {
     }()
 }
 
-public protocol Declarative: AnyObject {
+protocol Declarative: AnyObject {
     init()
 }
 
-public extension Declarative {
+extension Declarative {
     init(configureHandler: (Self) -> Void) {
         self.init()
         configureHandler(self)
