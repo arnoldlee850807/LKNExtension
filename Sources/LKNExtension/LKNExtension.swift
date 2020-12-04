@@ -802,5 +802,5 @@ public extension Declarative {
 extension NSObject: Declarative { }
 
 public func debugFunctionPrint(fileName: String, functionName: String, optionalStatement: String = "") {
-    optionalStatement == "" ? print("(LKN-DebugPrint): File Name: [\(fileName)]--Error function: [\(functionName)]"):print("(LKN-DebugPrint): File Name: [\(fileName)]--Error function: [\(functionName)]--[\(optionalStatement)]")
+    optionalStatement == "" ? print("(LKN-DebugPrint): File Name: [\(fileName).swift]--Error function: [\(functionName)]"):print("(LKN-DebugPrint): File Name: [\(fileName).swift]--Error function: [\(functionName)]--[\(optionalStatement)]")
 }
