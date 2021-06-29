@@ -353,12 +353,13 @@ extension UIViewController{
         messageLabel.backgroundColor = UIColor(hexString: "#F0F0F0")
         messageLabel.text = text
         messageLabel.textAlignment = .center
-        messageLabel.font = UIFont(name: messageLabel.font.fontName, size: 50)
         messageLabel.adjustsFontSizeToFitWidth = true
         messageLabel.minimumScaleFactor = 10
         messageLabel.textColor = UIColor(hexString: "#2C3E50")
         messageLabel.alpha = 0
         messageLabel.font = UIFont(name: messageLabel.font.fontName, size: messageLabel.font.pointSize * 0.9)
+        messageLabel.adjustsFontSizeToFitWidth = true
+        messageLabel.minimumScaleFactor = 0.1
         let window = UIApplication.shared.keyWindow!
         window.addSubview(messageLabel)
         UIView.animate(withDuration: 0.2, animations: {
