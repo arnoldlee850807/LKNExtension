@@ -794,7 +794,7 @@ protocol Declarative: AnyObject {
 }
 
 extension Declarative {
-    init(configureHandler: (Self) -> Void) {
+    public init(configureHandler: (Self) -> Void) {
         self.init()
         configureHandler(self)
     }
